@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
 const WorkoutSchema = new Schema({
     day: {
         type: Date,
@@ -9,11 +10,12 @@ const WorkoutSchema = new Schema({
     exercises: [{
         type: {
             type: String,
+            trim: true,
             required: "Type of the exercise:"
         },
         name: {
             type: String,
-            unique: true,
+            trim: true,
             required: "Name of the exercise:"
         },
         duration: {
