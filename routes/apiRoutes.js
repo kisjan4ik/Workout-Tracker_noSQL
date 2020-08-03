@@ -15,8 +15,8 @@ router.get("/api/workouts", (req, res) => {
 });
 // You will also need to figure out how to calculate the total duration from all exercises inside the exercises Array.
 // GET ( "/api/workouts/range" ) - Get the first 7 Workouts from the Workout table to be used in the "stats" page.
-router.get("/api/workout/range", (req, res) => {
-    Workout.find({ "day": { '$gte': lastWeek } })
+router.get("/api/workouts/range", (req, res) => {
+    Workout.find().limit(7)
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
