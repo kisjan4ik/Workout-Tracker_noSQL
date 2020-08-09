@@ -20,22 +20,20 @@ const WorkoutSchema = new Schema({
         },
         duration: {
             type: Number,
+            trim: true,
             required: "Duration time:"
         },
-        weight: {
-            type: Number
-        },
-        reps:{
-            type: Number
-        },
-        sets: {
-            type: Number
-        },
-        distance: {
-            type: Number
-        }
+        weight: Number,
+
+        reps: Number,
+
+        sets: Number,
+
+        distance: Number
     }]
 });
+
+
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
 

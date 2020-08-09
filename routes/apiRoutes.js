@@ -1,4 +1,4 @@
-const { Workout } = require("../models");
+const Workout = require("../models/workout");
 
 // Create all the routes to listen to the requests from the front end.
 const router = require("express").Router();
@@ -22,7 +22,8 @@ router.get("/api/workouts", (req, res) => {
 // You will also need to figure out how to calculate the total duration from all exercises inside the exercises Array.
 // GET ( "/api/workouts/range" ) - Get the first 7 Workouts from the Workout table to be used in the "stats" page.
 router.get("/api/workouts/range", (req, res) => {
-    Workout.find({}).limit(7)
+    Workout.find({})
+    // .limit(7)
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
@@ -41,9 +42,11 @@ router.post("/api/workouts", (req, res) => {
         });
 });
 // PUT ( "/api/workouts/:id" ) - Update a Workout
-router.put("/api/workouts/:id", ({body,params}, res) => {
-    console.log("Workout ID :" + params.id, body);
-    Workout.findByIdAndUpdate(params.id, { $push: { exercises: body } }, {new:true})
+router.put("/api/workouts/:id", (req, res) => {
+    // console.log("Workout ID :" + params.id, body);
+    Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } }
+        // , {new:true}
+        )
         .then(dbWorkout => {
             res.json(dbWorkout);
         })

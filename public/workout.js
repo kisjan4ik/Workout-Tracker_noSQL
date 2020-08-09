@@ -1,6 +1,13 @@
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
   console.log("Last workout:", lastWorkout);
+ 
+  const workoutArray = lastWorkout.exercises
+  let totalTime = 0;
+  for (let i = 0; i < workoutArray.length; i++){
+    totalTime += workoutArray[i].duration
+  }
+
   if (lastWorkout) {
     document
       .querySelector("a[href='/exercise?']")
@@ -8,7 +15,7 @@ async function initWorkout() {
 
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
-      totalDuration: lastWorkout.totalDuration,
+      totalDuration: totalTime,
       numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
