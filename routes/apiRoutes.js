@@ -23,7 +23,7 @@ router.get("/api/workouts", (req, res) => {
 // GET ( "/api/workouts/range" ) - Get the first 7 Workouts from the Workout table to be used in the "stats" page.
 router.get("/api/workouts/range", (req, res) => {
     Workout.find({})
-    // .limit(7)
+    .limit(7)
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
